@@ -48,7 +48,7 @@ program
       const { owner, repo } = options.repos[i];
 
       // eslint-disable-next-line no-await-in-loop
-      if (!(await apiClient.isValid(owner, repo))) {
+      if (!(await apiClient.isRepoValid(owner, repo))) {
         console.log(
           `${
             `${owner}/${repo}`.bold

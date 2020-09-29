@@ -34,6 +34,47 @@ export default async function queryMetrics(
       search.after = `"${response.search.pageInfo.endCursor}"`;
     }
 
+    const optionalQuerySegments: string[] = [];
+
+    if (ctx.includePrs) {
+      optionalQuerySegments.push(`
+        title
+        url
+      `);
+    }
+
+    if (ctx.includeAuthors || ctx.includePrs) {
+      optionalQuerySegments.push(`
+        author {
+          login
+        }
+      `);
+    }
+
+    if (ctx.includeProjects) {
+      optionalQuerySegments.push(`
+        repository {
+          name
+        }
+      `);
+    }
+
+    if (ctx.includeReviewers) {
+      optionalQuerySegments.push(`
+        reviews(first: 100) {
+          nodes {
+            author {
+              login
+            }
+            state
+            comments(first: 100) {
+              totalCount
+            }
+          }
+        }
+      `);
+    }
+
     // eslint-disable-next-line no-await-in-loop
     const current = await ctx.apiClient.graphql<
       PullRequestMetricsSearchResult
@@ -85,52 +126,7 @@ export default async function queryMetrics(
                 }
               }
 
-              ${
-                ctx.includePrs
-                  ? `
-                title
-                url
-                `
-                  : ''
-              }
-
-              ${
-                ctx.includeAuthors || ctx.includePrs
-                  ? `
-                author {
-                  login
-                }
-                `
-                  : ''
-              }
-
-              ${
-                ctx.includeProjects
-                  ? `
-                repository {
-                  name
-                }
-                `
-                  : ''
-              }
-
-              ${
-                ctx.includeReviewers
-                  ? `
-                  reviews(first: 100) {
-                    nodes {
-                      author {
-                        login
-                      }
-                      state
-                      comments(first: 100) {
-                        totalCount
-                      }
-                    }
-                  }
-                `
-                  : ''
-              }
+              ${optionalQuerySegments.join('\n')}
             }
           }
         }

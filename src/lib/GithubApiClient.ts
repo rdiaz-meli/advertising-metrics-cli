@@ -7,7 +7,7 @@ export default class GithubApiClient {
     this.client = new Octokit({ auth: token });
   }
 
-  async isValid(owner: string, repo: string) {
+  async isRepoValid(owner: string, repo: string) {
     try {
       await this.client.request('GET /repos/:owner/:repo', {
         owner,
