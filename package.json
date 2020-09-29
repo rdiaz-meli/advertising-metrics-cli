@@ -1,0 +1,62 @@
+{
+  "name": "@advertising/metrics-cli",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "adv-metrics": "bin/adv-metrics.js"
+  },
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "tsc -w",
+    "prettier": "prettier --write .",
+    "lint": "eslint \"**/*.ts\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "patch-package",
+    "prepublishOnly": "npm run lint && tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "bin",
+    "dist",
+    "package.json"
+  ],
+  "dependencies": {
+    "@octokit/core": "^3.1.2",
+    "@octokit/types": "5.4.1",
+    "cli-table": "^0.3.1",
+    "colors": "^1.4.0",
+    "commander": "^6.1.0",
+    "date-fns": "^2.16.1",
+    "inquirer": "^7.3.3",
+    "listr": "^0.14.3",
+    "lodash": "^4.17.20",
+    "patch-package": "^6.2.2",
+    "semver": "^7.3.2",
+    "utility-types": "^3.10.0"
+  },
+  "devDependencies": {
+    "@types/cli-table": "^0.3.0",
+    "@types/inquirer": "^7.3.1",
+    "@types/listr": "^0.14.2",
+    "@types/lodash": "^4.14.161",
+    "@types/semver": "^7.3.4",
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.1",
+    "typescript": "^4.0.2"
+  },
+  "engines": {
+    "node": ">= 8.3.0"
+  }
+}

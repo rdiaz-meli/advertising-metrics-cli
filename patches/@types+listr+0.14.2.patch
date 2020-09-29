@@ -1,0 +1,12 @@
+diff --git a/node_modules/@types/listr/index.d.ts b/node_modules/@types/listr/index.d.ts
+index 536bd3e..821f9e0 100644
+--- a/node_modules/@types/listr/index.d.ts
++++ b/node_modules/@types/listr/index.d.ts
+@@ -19,6 +19,7 @@ declare namespace Listr {
+     interface ListrOptions<Ctx = ListrContext> {
+         concurrent?: boolean | number;
+         exitOnError?: boolean;
++        collapse?: boolean;
+         renderer?: ListrRendererValue<Ctx>;
+         nonTTYRenderer?: ListrRendererValue<Ctx>;
+     }
