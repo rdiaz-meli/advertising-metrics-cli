@@ -10,7 +10,7 @@ import packageJson from '../package.json';
 program.version(packageJson.version);
 
 program
-  .command('metrics')
+  .command('github')
   .description('Get pull requests metrics in a date range.')
   .requiredOption(
     '--ranges <ranges...>',
@@ -82,10 +82,7 @@ program.on('--help', () => {
   console.log('');
   console.log('Examples:');
   console.log(
-    '  adv-metrics create-release fury_advertising-pads-frontend@1.2.0 fury_advertising-pads-middlend@1.1.0',
-  );
-  console.log(
-    '  adv-metrics merge-release fury_advertising-pads-frontend@1.2.0 fury_advertising-pads-middlend@1.1.0',
+    '  adv-metrics github --range 2020-08-17..2020-08-28 2020-08-31..2020-09-11 --repos fury_advertising-pads-frontend fury_advertising-pads-middlend --labels multicampaign',
   );
 });
 
