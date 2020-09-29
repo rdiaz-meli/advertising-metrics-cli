@@ -27,7 +27,6 @@
   ],
   "dependencies": {
     "@octokit/core": "^3.1.2",
-    "@octokit/types": "5.4.1",
     "cli-table": "^0.3.1",
     "colors": "^1.4.0",
     "commander": "^6.1.0",
