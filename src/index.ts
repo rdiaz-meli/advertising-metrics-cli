@@ -3,8 +3,8 @@ import { program } from 'commander';
 import { GithubCommandOptions } from './commands/github/types';
 import * as commands from './commands';
 import initAction from './lib/action';
-import { parseProject } from './lib/args-parser';
-import ApiClient from './lib/api';
+import { parseProject } from './lib/argsParser';
+import ApiClient from './lib/ApiClient';
 import packageJson from '../package.json';
 
 program.version(packageJson.version);
@@ -42,7 +42,7 @@ program
   })
   .action(async (options: GithubCommandOptions) => {
     const token = await initAction();
-    const apiClient = new ApiClient('', '', token);
+    const apiClient = new ApiClient(token);
 
     for (let i = 0; i < options.repos.length; i += 1) {
       const { owner, repo } = options.repos[i];
@@ -70,7 +70,7 @@ program
   .description('Validates the registered github access token.')
   .action(async () => {
     const token = await initAction();
-    const apiClient = new ApiClient('', '', token);
+    const apiClient = new ApiClient(token);
 
     await commands.whoami(apiClient);
   });

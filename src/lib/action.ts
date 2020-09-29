@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 import checkForUpdates from './updater';
-import getGithubToken from './token';
+import getGithubToken from './getGithubToken';
 
 export default async function action() {
   if (await checkForUpdates()) {

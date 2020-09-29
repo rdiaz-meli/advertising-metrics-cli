@@ -1,7 +1,7 @@
 type Value = number | string | undefined;
 type Params = { [key: string]: Value | Value[] };
 
-export default function stringifyParams(params: Params) {
+export default function stringifyQuery(params: Params) {
   const data: string[] = [];
 
   Object.keys(params).forEach((param) => {
