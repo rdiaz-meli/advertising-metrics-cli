@@ -9,11 +9,13 @@ export default async function updater() {
   }, 2000);
 
   const currentVersion = packageJson.version;
+  const registry = `--registry=${packageJson.publishConfig.registry}`;
 
   try {
-    const latestVersion = execSync(`npm show ${packageJson.name} version`, {
-      stdio: 'pipe',
-    }).toString();
+    const latestVersion = execSync(
+      `npm show ${registry} ${packageJson.name} version`,
+      { stdio: 'pipe' },
+    ).toString();
 
     clearTimeout(logTimeout);
 
@@ -28,7 +30,9 @@ export default async function updater() {
         ])
         .then((answers) => {
           if (answers.update) {
-            execSync(`npm i -g ${packageJson.name}`, { stdio: 'inherit' });
+            execSync(`npm i -g ${registry} ${packageJson.name}`, {
+              stdio: 'inherit',
+            });
             console.log('\n');
           }
 

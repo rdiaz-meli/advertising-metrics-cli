@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "http://registry.npm.ml.com"
   },
   "bin": {
     "adv-metrics": "bin/adv-metrics.js"
