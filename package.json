@@ -19,8 +19,17 @@
     "postinstall": "patch-package",
     "prepublishOnly": "npm run lint && tsc"
   },
-  "author": "",
+  "author": {
+    "name": "Rodrigo Díaz",
+    "email": "rdiaz@mercadolibre.cl"
+  },
   "license": "ISC",
+  "repository": "rdiaz-meli/advertising-metrics-cli",
+  "homepage": "https://github.com/rdiaz-meli/advertising-metrics-cli",
+  "bugs": {
+    "url": "https://github.com/rdiaz-meli/advertising-metrics-cli/issues",
+    "email": "rdiaz@mercadolibre.cl"
+  },
   "files": [
     "bin",
     "dist",
