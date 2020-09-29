@@ -11,7 +11,7 @@ program.version(packageJson.version);
 
 program
   .command('github')
-  .description('Get pull requests metrics in a date range.')
+  .description('get pull requests metrics by date range')
   .requiredOption(
     '--ranges <ranges...>',
     'data ranges to compare, ex "2020-08-17..2020-08-28"',
@@ -37,7 +37,7 @@ program
     console.log('');
     console.log('Examples:');
     console.log(
-      '  adv-metrics github --range 2020-08-17..2020-08-28 2020-08-31..2020-09-11 --repos fury_advertising-pads-frontend fury_advertising-pads-middlend --labels multicampaign',
+      '  adv-metrics github --ranges 2020-08-17..2020-08-28 2020-08-31..2020-09-11 --repos fury_advertising-pads-frontend fury_advertising-pads-middlend --labels multicampaign',
     );
   })
   .action(async (options: GithubCommandOptions) => {
@@ -67,7 +67,7 @@ program
 
 program
   .command('whoami')
-  .description('Validates the registered github access token.')
+  .description('display the authenticated github user')
   .action(async () => {
     const token = await initAction();
     const apiClient = new GithubApiClient(token);
@@ -81,8 +81,10 @@ program.on('--help', () => {
   console.log('  ADV_METRICS_GITHUB_TOKEN: github access token.');
   console.log('');
   console.log('Examples:');
+  console.log('  adv-metrics whoami');
+  console.log('  adv-metrics help github');
   console.log(
-    '  adv-metrics github --range 2020-08-17..2020-08-28 2020-08-31..2020-09-11 --repos fury_advertising-pads-frontend fury_advertising-pads-middlend --labels multicampaign',
+    '  adv-metrics github --ranges 2020-08-17..2020-08-28 2020-08-31..2020-09-11 --repos fury_advertising-pads-frontend fury_advertising-pads-middlend --labels multicampaign',
   );
 });
 
