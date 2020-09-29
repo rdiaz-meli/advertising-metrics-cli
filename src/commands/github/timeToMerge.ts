@@ -1,5 +1,5 @@
 import { differenceInMinutes, parseISO } from 'date-fns';
-import roundNumber from '../../lib/roundNumber';
+import roundNumber from '../../helper/roundNumber';
 import { PullRequestMetrics } from './types';
 
 export default function timeToMerge(pullRequest: PullRequestMetrics) {

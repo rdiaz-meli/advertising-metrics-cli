@@ -1,8 +1,8 @@
 import Listr from 'listr';
 import Table from 'cli-table';
 import { orderBy, uniq } from 'lodash';
-import roundNumber from '../../lib/roundNumber';
-import numberFormat from '../../lib/numberFormat';
+import roundNumber from '../../helper/roundNumber';
+import numberFormat from '../../helper/numberFormat';
 import {
   GithubCommandArgs,
   GithubCommandCtx,

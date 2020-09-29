@@ -1,6 +1,6 @@
 import { Octokit } from '@octokit/core';
 
-class ApiClient {
+export default class GithubApiClient {
   client: Octokit;
 
   constructor(token: string) {
@@ -34,5 +34,3 @@ class ApiClient {
     return this.client.graphql(query) as Promise<T>;
   }
 }
-
-export default ApiClient;

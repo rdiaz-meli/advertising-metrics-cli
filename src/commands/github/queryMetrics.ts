@@ -1,4 +1,4 @@
-import stringifyParams from '../../lib/stringifyQuery';
+import stringifyParams from '../../helper/stringifyQuery';
 import {
   GithubCommandCtx,
   PullRequestMetricsSearchResult,

@@ -1,5 +1,5 @@
 import { ListrTaskWrapper } from 'listr';
-import ApiClient from '../../lib/ApiClient';
+import GithubApiClient from '../../lib/GithubApiClient';
 
 export type PullRequestMetrics = {
   number: number;
@@ -57,7 +57,7 @@ export type PullRequestMetricsSearchResult = {
 };
 
 export type GithubCommandArgs = {
-  apiClient: ApiClient;
+  apiClient: GithubApiClient;
   repos: {
     owner: string;
     repo: string;

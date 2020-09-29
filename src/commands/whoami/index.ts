@@ -1,6 +1,6 @@
-import ApiClient from '../../lib/ApiClient';
+import GithubApiClient from '../../lib/GithubApiClient';
 
-export default async function whoamiCommand(apiClient: ApiClient) {
+export default async function whoamiCommand(apiClient: GithubApiClient) {
   const user = await apiClient.getUser();
 
   if (!user) {
