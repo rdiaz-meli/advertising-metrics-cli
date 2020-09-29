@@ -1,4 +1,4 @@
-import ApiClient from 'lib/api';
+import ApiClient from '../lib/api';
 
 export { PullRequest, Milestone, Branch } from '@octokit/types';
 

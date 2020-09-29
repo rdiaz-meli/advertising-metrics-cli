@@ -1,6 +1,6 @@
 import 'colors';
 import { program } from 'commander';
-import { GithubCommandOptions } from 'commands/github/types';
+import { GithubCommandOptions } from './commands/github/types';
 import * as commands from './commands';
 import initAction from './lib/action';
 import { parseProject } from './lib/args-parser';

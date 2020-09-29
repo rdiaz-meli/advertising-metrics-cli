@@ -1,5 +1,5 @@
-import ApiClient from 'lib/api';
 import { ListrTaskWrapper } from 'listr';
+import ApiClient from '../../lib/api';
 
 export type PullRequestMetrics = {
   number: number;
