@@ -53,7 +53,7 @@ program
           `${
             `${owner}/${repo}`.bold
           } repository not found. Check the project name or ${
-            'MELI_GITHUB_TOKEN'.bold
+            'ADV_METRICS_GITHUB_TOKEN'.bold
           } value.`.red,
         );
         process.exit();
@@ -78,7 +78,7 @@ program
 program.on('--help', () => {
   console.log('');
   console.log('Environment variables:');
-  console.log('  MELI_GITHUB_TOKEN: github access token.');
+  console.log('  ADV_METRICS_GITHUB_TOKEN: github access token.');
   console.log('');
   console.log('Examples:');
   console.log(

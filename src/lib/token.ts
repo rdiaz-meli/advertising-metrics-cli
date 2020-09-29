@@ -2,12 +2,12 @@ import inquirer from 'inquirer';
 import { execSync } from 'child_process';
 
 export default async function getGithubToken() {
-  if (process.env.MELI_GITHUB_TOKEN) {
-    return process.env.MELI_GITHUB_TOKEN;
+  if (process.env.ADV_METRICS_GITHUB_TOKEN) {
+    return process.env.ADV_METRICS_GITHUB_TOKEN;
   }
 
   console.log(
-    `Environment variable ${'MELI_GITHUB_TOKEN'.bold} not found`.yellow,
+    `Environment variable ${'ADV_METRICS_GITHUB_TOKEN'.bold} not found`.yellow,
   );
   console.log('1. Visit https://github.com/settings/tokens.');
   console.log(`2. Generate a token with ${'repo'.bold} permissions.`);
@@ -28,11 +28,12 @@ export default async function getGithubToken() {
         : '~/.bash_profile';
 
       execSync(
-        `echo "export MELI_GITHUB_TOKEN=\\""${answers.token}\\""" >> ${fileName}`,
+        `echo "export ADV_METRICS_GITHUB_TOKEN=\\""${answers.token}\\""" >> ${fileName}`,
       );
 
       console.log(
-        `\n${'MELI_GITHUB_TOKEN'.bold} added to file ${fileName}\n`.green,
+        `\n${'ADV_METRICS_GITHUB_TOKEN'.bold} added to file ${fileName}\n`
+          .green,
       );
 
       return answers.token;

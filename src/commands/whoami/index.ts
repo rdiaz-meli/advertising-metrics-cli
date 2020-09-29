@@ -4,7 +4,7 @@ export default async function whoami(apiClient: ApiClient) {
   const user = await apiClient.getUser();
 
   if (!user) {
-    console.log(`Invalid ${'MELI_GITHUB_TOKEN'.bold} token.`.red);
+    console.log(`Invalid ${'ADV_METRICS_GITHUB_TOKEN'.bold} token.`.red);
     return;
   }
 
