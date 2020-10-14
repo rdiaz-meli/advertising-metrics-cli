@@ -89,8 +89,8 @@ function printAggregatedReport(
   const head = [
     keyName,
     'MERGED PRS',
-    'AVG HOURS TO MERGE',
-    'AVG LOC',
+    'AVG LEAD TIME',
+    'AVG LINES OF CODE',
     'AVG CHANGED FILES',
   ];
 
@@ -152,7 +152,7 @@ function printAggregatedReport(
 
 function printPRsReport(ctx: GithubCommandCtx) {
   const metricsTable = new Table({
-    head: ['PR', 'AUTHOR', 'HOURS TO MERGE', 'LOC', 'CHANGED FILES'],
+    head: ['PR', 'AUTHOR', 'LEAD TIME', 'LINES OF CODE', 'CHANGED FILES'],
     style: { head: ['bold'] },
   });
 
@@ -310,8 +310,8 @@ function printTotals(ctx: GithubCommandCtx) {
     head: [
       'DATE RANGE',
       'MERGED PRS',
-      'AVG HOURS TO MERGE',
-      'AVG LOC',
+      'AVG LEAD TIME',
+      'AVG LINES OF CODE',
       'AVG CHANGED FILES',
     ],
     style: { head: ['bold'] },
