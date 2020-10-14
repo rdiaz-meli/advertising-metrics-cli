@@ -2,7 +2,7 @@ import { differenceInMinutes, parseISO } from 'date-fns';
 import roundNumber from '../../helper/roundNumber';
 import { PullRequestMetrics } from './types';
 
-export default function timeToMerge(pullRequest: PullRequestMetrics) {
+export default function getLeadTime(pullRequest: PullRequestMetrics) {
   const readyAtString =
     pullRequest.timelineItems.nodes[0]?.__typename === 'ReadyForReviewEvent'
       ? pullRequest.timelineItems.nodes[0].createdAt

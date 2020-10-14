@@ -12,7 +12,7 @@ import {
   ReviewersData,
 } from './types';
 import queryMetrics from './queryMetrics';
-import timeToMerge from './timeToMerge';
+import getLeadTime from './getLeadTime';
 
 async function fetchPullRequests(
   ctx: GithubCommandCtx,
@@ -43,7 +43,7 @@ function aggregatePullRequestsMetrics(pullRequests: PullRequestMetrics[]) {
     additions: avg(pullRequests, (current) => current.additions),
     deletions: avg(pullRequests, (current) => current.deletions),
     changedFiles: avg(pullRequests, (current) => current.changedFiles),
-    hoursToMerge: avg(pullRequests, (current) => timeToMerge(current)),
+    hoursToMerge: avg(pullRequests, (current) => getLeadTime(current)),
   };
 }
 
@@ -161,7 +161,7 @@ function printPRsReport(ctx: GithubCommandCtx) {
       metricsTable.push([
         `${pullRequest.title.bold}\n${pullRequest.url}`,
         `@${pullRequest.author.login}`,
-        numberFormat(timeToMerge(pullRequest)),
+        numberFormat(getLeadTime(pullRequest)),
         stringifyLOC(pullRequest.additions, pullRequest.deletions),
         numberFormat(pullRequest.changedFiles),
       ]);
