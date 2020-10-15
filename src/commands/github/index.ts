@@ -446,12 +446,12 @@ export default async function githubCommand(args: GithubCommandArgs) {
       printAuthorsReport(result);
     }
 
-    if (result.includeProjects) {
-      printProjectsReport(result);
-    }
-
     if (result.includeReviewers) {
       printReviewersReport(result);
+    }
+
+    if (result.includeProjects) {
+      printProjectsReport(result);
     }
 
     printTotals(result);
