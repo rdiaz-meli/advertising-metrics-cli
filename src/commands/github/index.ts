@@ -37,13 +37,26 @@ function avg(
   );
 }
 
+function median(
+  pullRequests: PullRequestMetrics[],
+  callback: (pr: PullRequestMetrics) => number,
+) {
+  const values = pullRequests.map(callback);
+  const middleIndex = Math.floor(values.length / 2);
+  const sorted = values.sort((a, b) => a - b);
+
+  return values.length % 2 === 0
+    ? (sorted[middleIndex - 1] + sorted[middleIndex]) / 2
+    : sorted[middleIndex];
+}
+
 function aggregatePullRequestsMetrics(pullRequests: PullRequestMetrics[]) {
   return {
     mergedPRs: pullRequests.length,
     additions: avg(pullRequests, (current) => current.additions),
     deletions: avg(pullRequests, (current) => current.deletions),
     changedFiles: avg(pullRequests, (current) => current.changedFiles),
-    hoursToMerge: avg(pullRequests, (current) => getLeadTime(current)),
+    leadTime: median(pullRequests, (current) => getLeadTime(current)),
   };
 }
 
@@ -89,7 +102,7 @@ function printAggregatedReport(
   const head = [
     keyName,
     'MERGED PRS',
-    'AVG LEAD TIME',
+    'MEDIAN LEAD TIME',
     'AVG LINES OF CODE',
     'AVG CHANGED FILES',
   ];
@@ -119,7 +132,7 @@ function printAggregatedReport(
           additions,
           deletions,
           changedFiles,
-          hoursToMerge,
+          leadTime,
         } = calculatedMetrics[rangeIndex];
         const row = [
           rangeIndex === 0 ? key.bold : ' ∟',
@@ -129,8 +142,8 @@ function printAggregatedReport(
             '+',
           ),
           stringifyDiff(
-            hoursToMerge,
-            calculatedMetrics[rangeIndex - 1]?.hoursToMerge,
+            leadTime,
+            calculatedMetrics[rangeIndex - 1]?.leadTime,
             '-',
           ),
           stringifyLOC(additions, deletions),
@@ -310,7 +323,7 @@ function printTotals(ctx: GithubCommandCtx) {
     head: [
       'DATE RANGE',
       'MERGED PRS',
-      'AVG LEAD TIME',
+      'MEDIAN LEAD TIME',
       'AVG LINES OF CODE',
       'AVG CHANGED FILES',
     ],
@@ -327,17 +340,13 @@ function printTotals(ctx: GithubCommandCtx) {
       additions,
       deletions,
       changedFiles,
-      hoursToMerge,
+      leadTime,
     } = calculatedMetrics[index];
 
     metricsTable.push([
       `${range[0]}..${range[1]}`.bold,
       stringifyDiff(mergedPRs, calculatedMetrics[index - 1]?.mergedPRs, '+'),
-      stringifyDiff(
-        hoursToMerge,
-        calculatedMetrics[index - 1]?.hoursToMerge,
-        '-',
-      ),
+      stringifyDiff(leadTime, calculatedMetrics[index - 1]?.leadTime, '-'),
       stringifyLOC(additions, deletions),
       numberFormat(changedFiles),
     ]);
