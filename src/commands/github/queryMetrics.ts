@@ -22,7 +22,7 @@ export default async function queryMetrics(
     after?: string;
   } = {
     first: 25,
-    query: `"${stringifyParams(query)}"`,
+    query: `"${stringifyParams(query, { quotes: true })}"`,
     type: 'ISSUE',
     after: undefined,
   };
