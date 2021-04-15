@@ -9,7 +9,7 @@ Advertising teams metrics tool.
 ## Install
 
 ```shell
-npm i -g --registry=http://registry.npm.ml.com adv-metrics-cli
+npm i -g --registry=https://npm.artifacts.furycloud.io adv-metrics-cli
 ```
 
 ## Usage
